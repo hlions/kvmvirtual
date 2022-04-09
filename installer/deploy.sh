@@ -33,7 +33,9 @@ function initial_environment() {
 function upgrade_kernel() {
     # upgrade kernel
     yum -y update --exclude=kernel*
-    yum -y localinstall pkgs/kernel-lt-*
+    curl -o kernel-lt-5.4.188-1.el7.elrepo.x86_64.rpm https://elrepo.org/linux/kernel/el7/x86_64/RPMS/kernel-lt-5.4.188-1.el7.elrepo.x86_64.rpm
+    curl -o kernel-lt-devel-5.4.188-1.el7.elrepo.x86_64.rpm https://elrepo.org/linux/kernel/el7/x86_64/RPMS/kernel-lt-devel-5.4.188-1.el7.elrepo.x86_64.rpm
+    yum -y localinstall kernel-lt-*
     grub2-set-default 0 && grub2-mkconfig -o /etc/grub2.cfg
     grubby --args="user_namespace.enable=1" --update-kernel="$(grubby --default-kernel)"
     modprobe -a kvm
