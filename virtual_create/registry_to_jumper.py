@@ -17,10 +17,10 @@ import requests
 class RegistryJumpserver:
 
     def __init__(self):
-        self.jms_url = 'https://jumpserver.xxxx.xxx'
+        self.jms_url = 'https://JUMPERURL'
         self.machines_url = '/api/v1/assets/assets/'
-        self.admin_user_id = 'xxx'
-        self.__jms_token = 'xxx'
+        self.admin_user_id = 'JUMPERADMINID'
+        self.__jms_token = 'JUMPERPTOKEN'
         self.__headers = {
             'Authorization': f'Token {self.__jms_token}',
             'Content-Disposition': 'code/parse',
