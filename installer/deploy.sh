@@ -31,7 +31,7 @@ function initial_environment() {
 }
 
 function initial_directory() {
-  mkdir -p /kvm/{vdisks,isos}
+  mkdir -p /kvm/{vdisks,isos,modify}
   if [ ! -f /kvm/isos/CentOS-7-x86_64-Minimal-2009.iso ];then
     curl -o /kvm/isos/CentOS-7-x86_64-Minimal-2009.iso https://mirrors.ustc.edu.cn/centos/7.9.2009/isos/x86_64/CentOS-7-x86_64-Minimal-2009.iso
   fi
