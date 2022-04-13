@@ -1,0 +1,173 @@
+engine-setup
+[ INFO  ] Stage: Initializing
+[ INFO  ] Stage: Environment setup
+          Configuration files: ['/etc/ovirt-engine-setup.conf.d/10-packaging-jboss.conf', '/etc/ovirt-engine-setup.conf.d/10-packaging.conf']
+          Log file: /var/log/ovirt-engine/setup/ovirt-engine-setup-20220413004032-1qea62.log
+          Version: otopi-1.8.4 (otopi-1.8.4-1.el7)
+[ INFO  ] Stage: Environment packages setup
+[ INFO  ] Stage: Programs detection
+[ INFO  ] Stage: Environment setup (late)
+[ INFO  ] Stage: Environment customization
+
+          --== PRODUCT OPTIONS ==--
+
+          Set up Cinderlib integration
+          (Currently in tech preview)
+          (Yes, No) [No]:
+          Configure Engine on this host (Yes, No) [Yes]:
+          Configure ovirt-provider-ovn (Yes, No) [Yes]:
+          Configure WebSocket Proxy on this host (Yes, No) [Yes]:
+
+          * Please note * : Data Warehouse is required for the engine.
+          If you choose to not configure it on this host, you have to configure
+          it on a remote host, and then configure the engine on this host so
+          that it can access the database of the remote Data Warehouse host.
+          Configure Data Warehouse on this host (Yes, No) [Yes]:
+          Configure Image I/O Proxy on this host (Yes, No) [Yes]:
+          Configure VM Console Proxy on this host (Yes, No) [Yes]:
+
+          --== PACKAGES ==--
+
+[ INFO  ] Checking for product updates...
+[ INFO  ] No product updates found
+
+          --== NETWORK CONFIGURATION ==--
+
+          Host fully qualified DNS name of this server [ovirt-engine]: ovirt.hiops.icu
+          Setup can automatically configure the firewall on this system.
+          Note: automatic configuration of the firewall may overwrite current settings.
+          NOTICE: iptables is deprecated and will be removed in future releases
+          Do you want Setup to configure the firewall? (Yes, No) [Yes]:
+          The following firewall managers were detected on this system: firewalld
+          Firewall manager to configure (firewalld): firewalld
+[ INFO  ] firewalld will be configured as firewall manager.
+
+          --== DATABASE CONFIGURATION ==--
+
+          Where is the DWH database located? (Local, Remote) [Local]:
+          Setup can configure the local postgresql server automatically for the DWH to run. This may conflict with existing applications.
+          Would you like Setup to automatically configure postgresql and create DWH database, or prefer to perform that manually? (Automatic, Manual) [Automatic]:
+          Where is the Engine database located? (Local, Remote) [Local]:
+          Setup can configure the local postgresql server automatically for the engine to run. This may conflict with existing applications.
+          Would you like Setup to automatically configure postgresql and create Engine database, or prefer to perform that manually? (Automatic, Manual) [Automatic]:
+
+          --== OVIRT ENGINE CONFIGURATION ==--
+
+          Engine admin password:
+          Confirm engine admin password:
+          Application mode (Virt, Gluster, Both) [Both]:
+          Use default credentials (admin@internal) for ovirt-provider-ovn (Yes, No) [Yes]:
+
+          --== STORAGE CONFIGURATION ==--
+
+          Default SAN wipe after delete (Yes, No) [No]: Yes
+
+          --== PKI CONFIGURATION ==--
+
+          Organization name for certificate [hiops.icu]:
+
+          --== APACHE CONFIGURATION ==--
+
+          Setup can configure the default page of the web server to present the application home page. This may conflict with existing applications.
+          Do you wish to set the application as the default page of the web server? (Yes, No) [Yes]:
+          Setup can configure apache to use SSL using a certificate issued from the internal CA.
+          Do you wish Setup to configure that, or prefer to perform that manually? (Automatic, Manual) [Automatic]:
+
+          --== SYSTEM CONFIGURATION ==--
+
+
+          --== MISC CONFIGURATION ==--
+
+          Please choose Data Warehouse sampling scale:
+          (1) Basic
+          (2) Full
+          (1, 2)[1]:
+
+          --== END OF CONFIGURATION ==--
+
+[ INFO  ] Stage: Setup validation
+[WARNING] Less than 16384MB of memory is available
+
+          --== CONFIGURATION PREVIEW ==--
+
+          Application mode                        : both
+          Default SAN wipe after delete           : True
+          Firewall manager                        : firewalld
+          Update Firewall                         : True
+          Host FQDN                               : ovirt.hiops.icu
+          Set up Cinderlib integration            : False
+          Configure local Engine database         : True
+          Set application as default page         : True
+          Configure Apache SSL                    : True
+          Engine database secured connection      : False
+          Engine database user name               : engine
+          Engine database name                    : engine
+          Engine database host                    : localhost
+          Engine database port                    : 5432
+          Engine database host name validation    : False
+          Engine installation                     : True
+          PKI organization                        : hiops.icu
+          Set up ovirt-provider-ovn               : True
+          Configure WebSocket Proxy               : True
+          DWH installation                        : True
+          DWH database host                       : localhost
+          DWH database port                       : 5432
+          Configure local DWH database            : True
+          Configure Image I/O Proxy               : True
+          Configure VMConsole Proxy               : True
+
+          Please confirm installation settings (OK, Cancel) [OK]:
+[ INFO  ] Stage: Transaction setup
+[ INFO  ] Stopping engine service
+[ INFO  ] Stopping ovirt-fence-kdump-listener service
+[ INFO  ] Stopping dwh service
+[ INFO  ] Stopping Image I/O Proxy service
+[ INFO  ] Stopping vmconsole-proxy service
+[ INFO  ] Stopping websocket-proxy service
+[ INFO  ] Stage: Misc configuration (early)
+[ INFO  ] Stage: Package installation
+[ INFO  ] Stage: Misc configuration
+[ INFO  ] Upgrading CA
+[ INFO  ] Initializing PostgreSQL
+[ INFO  ] Creating PostgreSQL 'engine' database
+[ INFO  ] Configuring PostgreSQL
+[ INFO  ] Creating PostgreSQL 'ovirt_engine_history' database
+[ INFO  ] Configuring PostgreSQL
+[ INFO  ] Creating CA
+[ INFO  ] Creating/refreshing DWH database schema
+[ INFO  ] Configuring Image I/O Proxy
+[ INFO  ] Setting up ovirt-vmconsole proxy helper PKI artifacts
+[ INFO  ] Setting up ovirt-vmconsole SSH PKI artifacts
+[ INFO  ] Configuring WebSocket Proxy
+[ INFO  ] Creating/refreshing Engine database schema
+[ INFO  ] Creating/refreshing Engine 'internal' domain database schema
+[ INFO  ] Creating default mac pool range
+[ INFO  ] Adding default OVN provider to database
+[ INFO  ] Adding OVN provider secret to database
+[ INFO  ] Setting a password for internal user admin
+[ INFO  ] Generating post install configuration file '/etc/ovirt-engine-setup.conf.d/20-setup-ovirt-post.conf'
+[ INFO  ] Stage: Transaction commit
+[ INFO  ] Stage: Closing up
+[ INFO  ] Starting engine service
+[ INFO  ] Starting dwh service
+[ INFO  ] Restarting ovirt-vmconsole proxy service
+
+          --== SUMMARY ==--
+
+[ INFO  ] Restarting httpd
+          Please use the user 'admin@internal' and password specified in order to login
+          Web access is enabled at:
+              http://ovirt.hiops.icu:80/ovirt-engine
+              https://ovirt.hiops.icu:443/ovirt-engine
+          Internal CA 10:E8:F6:17:D4:92:8E:F7:DD:DF:52:64:C5:D8:4F:63:47:19:7E:A5
+          SSH fingerprint: SHA256:xNf9iL2iIx5TWumP1VV+RIp7sjT3RYG7CZVHlf+VWOc
+[WARNING] Less than 16384MB of memory is available
+
+          --== END OF SUMMARY ==--
+
+[ INFO  ] Stage: Clean up
+          Log file is located at /var/log/ovirt-engine/setup/ovirt-engine-setup-20220413004032-1qea62.log
+[ INFO  ] Generating answer file '/var/lib/ovirt-engine/setup/answers/20220413004719-setup.conf'
+[ INFO  ] Stage: Pre-termination
+[ INFO  ] Stage: Termination
+[ INFO  ] Execution of setup completed successfully
